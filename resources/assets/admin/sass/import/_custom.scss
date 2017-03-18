@@ -1,0 +1,61 @@
+/* Only demo */
+@media (max-width: 1000px) {
+  .welcome-message {
+    display: none;
+  }
+}
+
+#member-card .col-sm-3{
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.col-md-3.narrow, .col-sm-3.narrow{
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+.img-preview-sm.avatar-img{
+  width:150px;
+  height:150px;
+}
+
+img#avatar {
+  max-width: 100%;
+}
+.cropper-container{
+  left:0 !important;
+}
+
+.has-error .form-control, .has-error .form-control:focus {
+    border-color: #ED5565 !important;
+}
+// for select2
+.sns_select2{
+    width: 100% !important;
+}
+.sns_select2_div .select2-container{
+    width:100% !important;
+    text-align: left !important;
+    float:left !important;
+}
+.select2.select2-container {
+    margin-bottom:10px !important;
+    font-size: 14px;
+    color: #999 !important;
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa !important;
+    border-radius: 4px;
+}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 32px;
+}
+// sns
+.form-horizontal .control-label#sns-label {
+padding-top: 5px;
+}

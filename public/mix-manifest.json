@@ -1,0 +1,11 @@
+{
+  "/js/app.js": "/js/app.js",
+  "/css/app.css": "/css/app.css",
+  "/admin/css/admin.css": "/admin/css/admin.css",
+  "/front/js/front_app.js": "/front/js/front_app.js",
+  "/admin/js/admin_app.js": "/admin/js/admin_app.js",
+  "/admin/js/admin_plugin.js": "/admin/js/admin_plugin.js",
+  "/front/js/front.js": "/front/js/front.js",
+  "/admin/css/admin_plugin.css": "/admin/css/admin_plugin.css",
+  "/front/css/front.css": "/front/css/front.css"
+}
