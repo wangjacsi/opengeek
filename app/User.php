@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,6 +10,7 @@ use Cklmercer\ModelSettings\HasSettings;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable;
     use HasSettings;
 
@@ -57,5 +59,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    // User <> Tlist
+    public function tlists(){
+        return $this->belongsToMany('App\Tlist');
+    }
+
+    // User > Tutorial
+    public function tutorials(){
+        return $this->hasMany('App\Tutorial');
+    }
 
 }

@@ -14,7 +14,8 @@ class TutorialController extends Controller
      */
     public function index()
     {
-        //
+        // Show all the tutorials
+
     }
 
     /**
@@ -24,7 +25,7 @@ class TutorialController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tutorial.create')->with([]);
     }
 
     /**
