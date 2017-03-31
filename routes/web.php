@@ -41,6 +41,9 @@ Route::group(['prefix' => 'profile'], function() {
 // backstage, backyard, underground, background, admin,
 // shield, ground, 서비스 + in
 Route::resource('tutorial', 'TutorialController');
+Route::resource('tlist', 'TlistController');
+Route::post('tag/findGet/{query?}', 'TagController@findGet');
+Route::resource('tag', 'TagController');
 
 
 /*Route::group(['prefix'=> 'user'], function() {

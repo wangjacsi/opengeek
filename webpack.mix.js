@@ -34,18 +34,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    'resources/assets/front/js/ScrollMagic.min.js',
    'resources/assets/front/js/animation.velocity.min.js'
  ], 'public/front/js/front.js', './')
- /*.combine([
-    'public/plugins/froala_editor_2.5.1/js/froala_editor.css',
-    'public/plugins/froala_editor_2.5.1/js/froala_style.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/code_view.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/draggable.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/colors.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/emoticons.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/image_manager.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/image.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/line_breaker.css',
-    'public/plugins/froala_editor_2.5.1/js/plugins/table.css'
-], 'public/plugins/froala_editor_2.5.1/js/froala_mix.css')*/
    .sass('resources/assets/sass/app.scss', 'public/css')
    .sass('resources/assets/admin/sass/admin.scss', 'public/admin/css')
    .combine([
@@ -67,22 +55,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
       'resources/assets/front/css/primary-menu.css',
       'resources/assets/front/css/magnific-popup.css'
   ], 'public/front/css/front.css');
-   /*.combine([
-      'public/plugins/froala_editor_2.5.1/css/froala_editor.css',
-      'public/plugins/froala_editor_2.5.1/css/froala_style.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/code_view.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/draggable.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/colors.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/emoticons.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/image_manager.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/image.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/line_breaker.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/table.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/char_counter.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/video.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/fullscreen.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/file.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/quick_insert.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/help.css',
-      'public/plugins/froala_editor_2.5.1/css/plugins/special_characters.css'
-  ], 'public/plugins/froala_editor_2.5.1/css/froala_mix.css');*/
+   

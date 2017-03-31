@@ -67,22 +67,22 @@
                           <div class="hr-line-dashed"></div>
                           <div class="form-group">
                               <label class="col-sm-2 control-label">강좌 리스트 선택</label>
-                              <div class="col-sm-10">
-                                <select data-placeholder="강좌를 선택해 주세요..." class="chosen-select"  tabindex="2">
+                              <div class="col-sm-5">
+                                <select id="tutorial-tc-level1" data-placeholder="강좌를 선택해 주세요..." class="chosen-select"  tabindex="2">
                                       <option value="">강좌 선택</option>
                                       <option>라라벨 프레임워크 5.4</option>
                                       <option>Python으로 웹 개발까지</option>
                                       <option>PHP 기초 시작하기</option>
                                       <option>Ruby on rails 끝장내기</option>
                                   </select>
-                                  <span class="help-block m-b-none"><a href="#tutorial-list-group">강좌 리스트 추가하기</a></span>
+                                  <span class="help-block m-b-none">대분류 <a href="#tutorial-list-group"> 강좌 리스트 추가하기</a></span>
                               </div>
                           </div>
                           <div class="hr-line-dashed"></div>
                           <div class="form-group">
                               <label class="col-sm-2 control-label">태그</label>
                               <div class="col-sm-10">
-                                  <input class="tagsinput form-control" type="text" value="amazon,aws,ruby,Amsterdam,Washington"/>
+                                  <input class="tagsinput form-control" type="text" id="tutorial-tags" value="amazon,aws,ruby,Amsterdam,Washington"/>
                               </div>
                           </div>
                           <div class="hr-line-dashed"></div>
@@ -147,7 +147,7 @@
                               <div class="project-list">
 
                           <table class="table table-hover">
-                              <tbody>
+                              <tbody id="tlist-table">
                               <tr>
                                   <td class="project-status">
                                       <span class="label label-primary">Active</span>
@@ -429,93 +429,95 @@
                       <div class="row">
                           <div class="col-md-12">
                               <form class="form-horizontal" action="#">
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-title">
                                       <label class="col-sm-2 control-label">제목</label>
                                       <div class="col-sm-10">
-                                          <input type="text" class="form-control" maxlength="255">
+                                          <input id="tlist-title" type="text" class="form-control" maxlength="255">
                                       </div>
                                   </div>
                                   <div class="hr-line-dashed"></div>
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-link">
                                       <label class="col-sm-2 control-label">강좌 동영상 링크</label>
                                       <div class="col-sm-10">
-                                          <input type="text" class="form-control" maxlength="255">
+                                          <input id="tlist-link" type="text" class="form-control" maxlength="255">
                                           <span class="help-block m-b-none">동영상 링크를 넣어주세요.(예: )</span>
                                       </div>
                                   </div>
                                   <div class="hr-line-dashed"></div>
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-category">
                                       <label class="col-sm-2 control-label">강좌 카테고리 선택</label>
-                                      <div class="col-sm-3">
-                                        <select data-placeholder="카테고리를 선택해 주세요..." class="chosen-select"  tabindex="2">
-                                              <option value="">강좌 선택</option>
-                                              <option>라라벨 프레임워크 5.4</option>
-                                              <option>Python으로 웹 개발까지</option>
-                                              <option>PHP 기초 시작하기</option>
-                                              <option>Ruby on rails 끝장내기</option>
-                                          </select>
-                                          <span class="help-block m-b-none"><a href="#tutorial-list-group">대분류</a></span>
+                                      @if(count($tcategories) == 0)
+                                      <div class="col-sm-5">
+                                          선택할 수 있는 카테고리가 없습니다.
                                       </div>
-                                      <div class="col-sm-3">
-                                        <select data-placeholder="카테고리를 선택해 주세요..." class="chosen-select"  tabindex="2">
-                                              <option value="">강좌 선택</option>
-                                              <option>라라벨 프레임워크 5.4</option>
-                                              <option>Python으로 웹 개발까지</option>
-                                              <option>PHP 기초 시작하기</option>
-                                              <option>Ruby on rails 끝장내기</option>
+                                      @else
+                                      <div class="col-sm-5">
+                                        <select id="tlist-category" data-placeholder="카테고리를 선택해 주세요..." class="chosen-select"  tabindex="2">
+                                            <option value="">카테고리 선택</option>
+                                            @foreach ($tcategories as $tcategory1)
+                                                @foreach ($tcategory1->children as $tcategory2)
+                                                    @if ($loop->first)
+                                                        <optgroup label="{{$tcategory1->name}}">
+                                                    @endif
+                                                    <option value="{{$tcategory2->id}}">{{$tcategory2->name}}</option>
+                                                    @if($loop->last)
+                                                        </optgroup>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
                                           </select>
-                                          <span class="help-block m-b-none"><a href="#tutorial-list-group">중분류</a></span>
+                                          <span class="help-block m-b-none"><a href="#">해당하는 카테고리가 없을 시 문의주세요</a></span>
                                       </div>
-                                      <div class="col-sm-3">
-                                        <select data-placeholder="카테고리를 선택해 주세요..." class="chosen-select"  tabindex="2">
-                                              <option value="">강좌 선택</option>
-                                              <option>라라벨 프레임워크 5.4</option>
-                                              <option>Python으로 웹 개발까지</option>
-                                              <option>PHP 기초 시작하기</option>
-                                              <option>Ruby on rails 끝장내기</option>
-                                          </select>
-                                          <span class="help-block m-b-none"><a href="#tutorial-list-group">소분류</a></span>
-                                      </div>
+                                    @endif
                                   </div>
                                   <div class="hr-line-dashed"></div>
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-status">
                                       <label class="col-sm-2 control-label">강좌 상태</label>
-                                      <div class="col-sm-10">
+                                      <div class="col-sm-10" id="tlist-status">
                                           <div class="radio radio-info radio-inline">
-                                              <input type="radio" id="inlineRadio1" value="1" name="radioInline" checked="">
+                                              <input type="radio" class="tlist-status-check" value="1" name="radioInline" checked="">
                                               <label for="inlineRadio1"> 진행중 </label>
                                           </div>
-                                          <div class="radio radio-inline">
-                                              <input type="radio" id="inlineRadio2" value="2" name="radioInline">
+                                          <div class="radio radio-success radio-inline">
+                                              <input type="radio" class="tlist-status-check" value="2" name="radioInline">
                                               <label for="inlineRadio2"> 완료 </label>
                                           </div>
-                                          <div class="radio radio-inline">
-                                              <input type="radio" id="inlineRadio3" value="3" name="radioInline">
-                                              <label for="inlineRadio2"> 멈춤 </label>
+                                          <div class="radio radio-danger radio-inline">
+                                              <input type="radio" class="tlist-status-check" value="3" name="radioInline">
+                                              <label for="inlineRadio2"> 휴강 </label>
                                           </div>
                                      </div>
                                   </div>
                                   <div class="hr-line-dashed"></div>
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-range">
                                        <label class="col-sm-2 control-label">강좌 진행률</label>
                                        <div class="col-sm-10">
-                                           <input type="text" id="tutorial-range" name="tutorial_range" value="" />
+                                           <input type="text" id="tlist-range" name="tutorial_range" value="" />
                                        </div>
                                   </div>
                                   <div class="hr-line-dashed"></div>
-                                  <div class="form-group">
+                                  <div class="form-group" id="fg-tlist-desc">
                                       <label class="col-sm-2 control-label">강좌 설명</label>
                                       <div class="col-sm-10">
-                                          <textarea id="tutorial-list-desc" class="form-control" placeholder=""></textarea>
+                                          <textarea id="tlist-desc" class="form-control" placeholder=""></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="hr-line-dashed"></div>
+                                  <div class="form-group">
+                                      <label class="col-sm-2 control-label">태그</label>
+                                      <div class="col-sm-10">
+                                          <input class="tagsinput form-control" id="tlist-tags" type="text" value="amazon,aws,ruby,Amsterdam,Washington"/>
+                                          <span class="help-block m-b-none">최대 10개 까지 등록 가능</span>
                                       </div>
                                   </div>
                                   <div class="hr-line-dashed"></div>
                                   <div class="form-group" id="tutorial-list-group">
                                       <div class="col-sm-4 col-sm-offset-2">
-                                          <button class="btn btn-primary" type="button">추가하기</button>
-                                          <button class="btn btn-white" type="button">초기화</button>
+                                          <button class="btn btn-primary" type="button" id="tlist-add">추가하기</button>
+                                          <button class="btn btn-white" type="button" id="tlist-reset">초기화</button>
                                       </div>
                                   </div>
+                                  <div class="m-t" id="tlist-result"></div>
                               </form>
                           </div>
                       </div>
@@ -532,7 +534,7 @@
 <!-- Chosen -->
 <script src="{{ URL::asset('plugins/chosen_v1.6.2/chosen.jquery.js') }}" type="text/javascript"></script>
 <!-- Tags Input -->
-<script src="{{ URL::asset('plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('plugins/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.js') }}" type="text/javascript"></script>
 <!-- https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/ -->
 <!-- Typeahead -->
 <script src="{{ URL::asset('plugins/Bootstrap-3-Typeahead-master/bootstrap3-typeahead.min.js') }}" type="text/javascript"></script>
@@ -543,41 +545,117 @@
 <script src="{{ URL::asset('plugins/froala_editor_2.5.1/js/froala_editor.pkgd.min.js') }}" type="text/javascript"></script>
 <!-- IonRangeSlider -->
 <script src="{{ URL::asset('plugins/ion.rangeSlider-master/js/ion.rangeSlider.min.js') }}"></script>
+<!-- Common Function -->
+<script src="{{ URL::asset('js/common.js') }}"></script>
 <script>
 $(document).ready(function(){
+    // tutorial list update
+    var tlist_status = {'1':'진행중', '2':'완료', '3':'중지'};
+    var tlist_status_label = {'1':'primary', '2':'success', '3':'danger'};
+    function appendTlist(resp){
+        var html = '<tr>';
+            html += '<td class="project-status">';
+            html += '<span class="label label-'+tlist_status_label[resp.data.status]+'">'+tlist_status[resp.data.status]+'</span>';
+            html += '</td><td class="project-title">';
+            html += '<a href="">'+resp.data.title+'</a>';
+            html += '<br/><small>Created '+resp.created_at+'</small></td>';
+            html += '<td class="project-completion">';
+            html += '<small>Completion with: '+resp.data.progress+'%</small>';
+            html += '<div class="progress progress-mini">';
+            html += '<div style="width: '+resp.data.progress+'%;" class="progress-bar"></div>';
+            html += '</div></td>';
+            html += '<td class="project-people">';
+            html += '<a href=""><img alt="image" class="img-circle" src="'+resp.avatar_s+'"></a>';
+            html += '</td><td class="project-actions">';
+            html += '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>';
+            html += '<a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a></td></tr>';
+        $('#tlist-table').append(html);
+    }
+
+    function tlistAjaxCallback(type, resp){
+        console.log(resp);
+        if(type== 'validerror'){
+            $.each( resp.errors, function( key, value ) {
+                basicFormValid('fg-tlist-'+key, 'error', value);
+            });
+        } else if(type== 'success'){
+            appendTlist(resp);
+            makeAlert(0);
+            alertStr = alertStr.replace(regAlertStr, '강좌 리스트 생성 성공');
+            $('#tlist-result').html(alertStr);
+        } else {
+            makeAlert(1);
+            alertStr = alertStr.replace(regAlertStr, '강좌 리스트 생성 실패');
+            $('#tlist-result').html(alertStr);
+        }
+    }
+
+    $('#tlist-add').on('click', function (){
+        basicFormValid(['fg-tlist-title','fg-tlist-category','fg-tlist-link', 'fg-tlist-desc', 'fg-tlist-status','tlist-range'], 'init', '');
+        var formData = new FormData();
+        formData.append('title', $('#tlist-title').val());
+        formData.append('video_link', $('#tlist-link').val());
+        formData.append('category', $('#tlist-category').val());
+        formData.append('desc', $("#tlist-desc").val());
+        formData.append('status', $('#tlist-status .tlist-status-check:checked').val());
+        formData.append('progress', $("#tlist-range").prop("value"));
+        formData.append('tags', $("#tlist-tags").val());
+        AjaxRun('/tlist', 'POST', formData, {'success':'강좌 리스트 추가 성공',
+                'error':'강좌 리스트 추가 실패'}, tlistAjaxCallback);
+    });
+
+
     // Range Slider
-    $("#tutorial-range").ionRangeSlider({
+    $("#tlist-range").ionRangeSlider({
         min: 0,
         max: 100,
         from: 5
     });
 
+
     // Froala Editor
-    $('#tutorial-desc, #tutorial-list-desc').froalaEditor({
+    $('#tutorial-desc, #tlist-desc').froalaEditor({
         toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'specialCharacters', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '|', 'quote', 'insertHR', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html', 'applyFormat', 'removeFormat', 'fullscreen', 'print', 'help'],
         heightMin: 200,
         heightMax: 400
     });
 
     // Chosen
-    $('.chosen-select').chosen({width: "100%"});
+    $('#tutorial-tc-level1').chosen({width:"100%"});
+    $('#tlist-category').chosen({width:"100%"});
+
 
     // Tags
     $('.tagsinput').tagsinput({
         typeahead: {
             afterSelect: function(val) { this.$element.val(""); },
             delay : 2,
-            minLength: 2,
-            items: 20,
+            minLength: 3,
+            items: 10,
             scrollHeight: 20,
             source: function(query) {
-              return $.get('listcategories.php').done(function(data){
-                return $.parseJSON(data);
-              })
+                //var formData = new FormData();
+                //formData.append('query', query);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': window.Laravel.csrfToken
+                    }
+                });
+                return $.ajax('/tag/findGet/'+query, {
+                      method: "POST",
+                      dataType: "json",
+                      data: [],
+                      processData: false,
+                      contentType: false,
+                      success: function (resp) {
+                          return resp;
+                      }
+                  });
             }
-            //source: ["Amsterdam", "Washington", "Sydney", "Beijing", "Cairo"]
         },
-        freeInput: true
+        freeInput: true,
+        trimValue: true,
+        maxTags: 10
     });
 
 

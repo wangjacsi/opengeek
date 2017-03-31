@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tutorial;
+use App\Tcategory;
 use Illuminate\Http\Request;
 
 class TutorialController extends Controller
@@ -25,7 +26,26 @@ class TutorialController extends Controller
      */
     public function create()
     {
-        return view('admin.tutorial.create')->with([]);
+        // fine level 1 categories
+        $tcategories1 = Tcategory::where('level', 1)->get();
+        $tree = Tcategory::get()->toTree();
+        $nodes = Tcategory::get()->toFlatTree();
+        //print_r($tree);
+        //dd($tree);
+        /*$traverse = function ($categories, $prefix = '-') use (&$traverse) {
+            foreach ($categories as $category) {
+                echo PHP_EOL.$prefix.' '.$category->name;
+
+                $traverse($category->children, $prefix.'-');
+            }
+        };
+
+        $traverse($tree);*/
+        //dd($traverse);
+
+
+        //dd($tcategories);
+        return view('admin.tutorial.create')->with(['tcategories' => $tree]);
     }
 
     /**

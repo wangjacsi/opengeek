@@ -7,6 +7,41 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    public $tagIds;
+
+    // Logic Function Here
+    public function createTags($data)
+    {
+        // make array
+        if(!is_array($data)){
+            $tags = explode(',', $data);
+        } else {
+            $tags = $data;
+        }
+
+        for ($i = 0; $i < count($tags); $i ++)
+        {
+            if (! $tag = Tag::firstOrCreate(['name' => $tags[$i]]))
+                throw new FailedTagCreateException;
+            $this->tagIds[] = $tag->id;
+        }
+        return true;
+    }
+
+    public function findGet($query){
+        //dd($request->query);
+        if($query != ''){
+            $tags = Tag::where('name', 'LIKE', '%'.$query.'%')->take(10)->get();
+            $names = $tags->map(function ($tag) {
+                return $tag->name;
+            });
+            return response()->json($names);
+            /*return response()->json([
+                'aaa','aavv','aafgr', 'bbb', 'ccc', 'ddd', 'eee'
+            ]);*/
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

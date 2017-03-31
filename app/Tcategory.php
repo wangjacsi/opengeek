@@ -3,12 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Tcategory extends Model
 {
-    //  Tcategory <> Tlist
+    use NodeTrait;
+
+    protected $fillable = array('name', 'parent_id', 'level');
+
+    /* Relation here */
+    //  Tcategory > Tlist
     public function tlists(){
-        return $this->belongsToMany('App\Tlist');
+        return $this->hasMany('App\Tlist');
+        //return $this->belongsToMany('App\Tlist')->withTimestamps();
     }
 
 }

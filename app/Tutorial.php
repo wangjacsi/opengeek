@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Tutorial extends Model
 {
+
+
     // Tutorial < Tlist
     public function tlist(){
         return $this->belongsTo('App\Tlist');
@@ -18,6 +21,6 @@ class Tutorial extends Model
 
     // Tutorial <>& Tag
     public function tags(){
-        return $this->morphToMany('App\Tag', 'taggable');
+        return $this->morphToMany('App\Tag', 'taggable')->withTimestamps();
     }
 }
