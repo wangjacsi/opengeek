@@ -14,12 +14,11 @@
 // codedripper.com, codingbuilder.com, drawingthecode.com(1), hipthecode.com
 // justdocoding
 
-
+//Route::get('tlist/{tlist}', 'TlistController@show');
 Route::get('/', function () {
     return view('welcome');
 });
 
-// /user-name/
 
 
 Route::get('/chat', function () {
@@ -41,7 +40,13 @@ Route::group(['prefix' => 'profile'], function() {
 // backstage, backyard, underground, background, admin,
 // shield, ground, 서비스 + in
 Route::resource('tutorial', 'TutorialController');
+
+// Tlist
+Route::get('tlist/getMyTlists/page', 'TlistController@getMyTlists');
+Route::get('tlist/category/{id}', 'TlistController@category');
 Route::resource('tlist', 'TlistController');
+
+// Tag
 Route::post('tag/findGet/{query?}', 'TagController@findGet');
 Route::resource('tag', 'TagController');
 
@@ -54,6 +59,7 @@ Route::resource('tag', 'TagController');
   return view('admin.home.index');
 });*/
 
+Route::get('logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index');

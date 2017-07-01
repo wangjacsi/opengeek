@@ -141,12 +141,15 @@
                             <fieldset>
                                 <p>비밀번호를 변경해 주세요</p>
                                 <div class="row">
-                                    <div class="col-lg-8 form-horizontal">
-                                        <div id="form-group-password" class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <div class="col-lg-8 form-horizontal" id="pwd-container">
+                                        <div id="form-group-password" class="m-b-none form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                             <label class="col-sm-2 control-label">비밀번호</label>
-                                            <div class="col-sm-10"><input id="password" name="password" type="password"  class="form-control" >
+                                            <div class="col-sm-10">
+                                                <input id="password" name="password" type="password"  class="form-control" >
+                                                <div class="pwstrength_progress m-b-none m-t-xs" ></div>
                                             </div>
                                         </div>
+
                                         <div id="form-group-password-confirmation" class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
                                           <label class="col-sm-2 control-label">비밀번호 확인</label>
                                           <div class="col-sm-10">
@@ -158,7 +161,6 @@
                                               @endif
                                               <button type="button" class="btn btn-w-m btn-success m-t" id="update-password">업데이트</button>
                                           </div>
-
                                         </div>
 
                                         <div class="m-t" id="password-result"></div>
@@ -285,7 +287,8 @@
 <script src="{{ URL::asset('plugins/flagstrap/js/jquery.flagstrap.min.js')}}"></script>
 <!-- Select 2 -->
 <script src="{{ URL::asset('plugins/select2/select2.full.min.js')}}"></script>
-
+<!-- Password meter -->
+<script src="{{ URL::asset('plugins/pwstrength/pwstrength-bootstrap.min.js')}}"></script>
 <script>
 $(document).ready(function(){
     $("#form").steps({
@@ -304,6 +307,28 @@ $(document).ready(function(){
             }
         }*/
     });
+
+    /* Password strength */
+    // Example 3
+    var pass_options = {};
+    pass_options.ui = {
+        container: "#pwd-container",
+        showVerdictsInsideProgressBar: true,
+        viewports: {
+            progress: ".pwstrength_progress"
+        }
+    };
+    pass_options.rules = {
+        activated: {
+            wordTwoCharacterClasses: true,
+            wordRepetitions: true
+        }
+    };
+    pass_options.common = {
+        debug: true,
+        usernameField: "#name"
+    };
+    $('#password').pwstrength(pass_options);
 
     var snsName = '';
     function snsFormSet(name, link){
@@ -505,7 +530,7 @@ $(document).ready(function(){
                     $image.cropper("reset", true).cropper("replace", this.result);
                 };
             } else {
-                showMessage("Please choose an image file.");
+                alert("Please choose an image file.");
             }
         });
     } else {

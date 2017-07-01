@@ -656,7 +656,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   color: #1ab394;
 }
 
-.top-navigation .nav > li.active {
+.top-navigation .navbar .nav > li.active {
   background: #fff;
   border: none;
 }
@@ -1280,10 +1280,14 @@ button.dim:active:before {
   background-color: #D1DADE;
   color: #5E5E5E;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px;
   font-weight: 600;
   padding: 3px 8px;
   text-shadow: none;
+}
+
+.nav .label,
+.ibox .label {
+  font-size: 10px;
 }
 
 .badge {
@@ -2269,7 +2273,6 @@ div.dt-button-info {
   -webkit-transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
   width: 100%;
-  font-size: 14px;
 }
 
 .form-control:focus,
@@ -3827,6 +3830,10 @@ a.forum-item-title:hover {
   outline: none;
 }
 
+.ui-select-container.ui-select-bootstrap .ui-select-choices-row.active > a {
+  background-color: #1ab394;
+}
+
 /* Tour */
 
 .tour-tour .btn.btn-default {
@@ -3903,16 +3910,19 @@ body.tour-open .animated {
   padding: 10px 0;
 }
 
-.stream:first-child .stream-icon:before {
+.stream:first-child .stream-badge:before {
   top: 10px;
 }
 
-.stream .stream-icon {
-  float: left;
+.stream:last-child .stream-badge:before {
+  height: 30px;
+}
+
+.stream .stream-badge {
   width: 50px;
 }
 
-.stream .stream-icon i {
+.stream .stream-badge i {
   border: 1px solid #e7eaec;
   border-radius: 50%;
   padding: 6px;
@@ -3922,41 +3932,41 @@ body.tour-open .animated {
   left: 8px;
 }
 
-.stream .stream-icon i.fa-circle {
+.stream .stream-badge i.fa-circle {
   color: #ced0d1;
 }
 
-.stream .stream-icon i.bg-success {
+.stream .stream-badge i.bg-success {
   color: #ffffff;
   background-color: #1c84c6;
   border-color: #1c84c6;
 }
 
-.stream .stream-icon i.bg-primary {
+.stream .stream-badge i.bg-primary {
   color: #ffffff;
   background-color: #1ab394;
   border-color: #1ab394;
 }
 
-.stream .stream-icon i.bg-warning {
+.stream .stream-badge i.bg-warning {
   color: #ffffff;
   background-color: #f8ac59;
   border-color: #f8ac59;
 }
 
-.stream .stream-icon i.bg-info {
+.stream .stream-badge i.bg-info {
   color: #ffffff;
   background-color: #23c6c8;
   border-color: #23c6c8;
 }
 
-.stream .stream-icon i.bg-danger {
+.stream .stream-badge i.bg-danger {
   color: #ffffff;
   background-color: #ED5565;
   border-color: #ED5565;
 }
 
-.stream .stream-icon:before {
+.stream .stream-badge:before {
   content: '';
   width: 1px;
   background-color: #e7eaec;
@@ -3967,8 +3977,8 @@ body.tour-open .animated {
 }
 
 .stream .stream-info {
-  margin-left: 55px;
   font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .stream .stream-info img {
@@ -3984,9 +3994,8 @@ body.tour-open .animated {
   font-size: 80%;
 }
 
-.stream .stream-content {
+.stream .stream-panel {
   margin-left: 55px;
-  margin-top: 5px;
 }
 
 .stream-small {
@@ -4159,6 +4168,11 @@ body.tour-open .animated {
 
 .sidebar-container .sidebar-message {
   padding: 15px 20px;
+}
+
+.sidebar-container .sidebar-message .media-body {
+  display: block;
+  width: auto;
 }
 
 .sidebar-container .sidebar-message .message-avatar {
@@ -10187,6 +10201,10 @@ body.md-skin {
   background: #ffffff;
 }
 
+.md-skin.fixed-nav #side-menu {
+  background-color: #fff;
+}
+
 .md-skin.fixed-nav #wrapper.top-navigation #page-wrapper {
   margin-top: 0;
 }
@@ -10224,7 +10242,7 @@ body.md-skin {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 220px;
-    min-height: 1200px;
+    min-height: 100vh;
   }
 
   .navbar-static-side {
@@ -10244,7 +10262,7 @@ body.md-skin {
   #page-wrapper {
     position: inherit;
     margin: 0 0 0 0;
-    min-height: 1000px;
+    min-height: 100vh;
   }
 
   .body-small .navbar-static-side {
@@ -10372,6 +10390,24 @@ body.md-skin {
   height: 150px;
 }
 
+.img-preview-sm.tutorial-img {
+  width: 250px;
+  height: 185px;
+}
+
+.img-container > img {
+  max-width: 100%;
+}
+
+.image-crop img {
+  max-width: 100%;
+}
+
+.img-preview-full {
+  height: auto;
+  width: 100%;
+}
+
 img#avatar {
   max-width: 100%;
 }
@@ -10416,6 +10452,37 @@ img#avatar {
 
 .form-horizontal .control-label#sns-label {
   padding-top: 5px;
+}
+
+.spinner-content {
+  min-height: 60px;
+}
+
+.spinner-content > .sk-spinner {
+  display: none;
+}
+
+.spinner-content.sk-loading {
+  position: relative;
+}
+
+.spinner-content.sk-loading:after {
+  content: '';
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.spinner-content.sk-loading > .sk-spinner {
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  z-index: 2000;
 }
 
 @media print {

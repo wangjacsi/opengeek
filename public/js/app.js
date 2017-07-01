@@ -12047,8 +12047,8 @@ module.exports = function spread(callback) {
 /* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, global) {
-window._ = __webpack_require__(30);
+/* WEBPACK VAR INJECTION */(function(global, __webpack_provided_window_dot_jQuery) {
+window._ = global._ = __webpack_require__(30);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -12098,7 +12098,7 @@ window.axios.defaults.headers.common = {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(1)))
 
 /***/ }),
 /* 29 */

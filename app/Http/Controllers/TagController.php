@@ -36,9 +36,6 @@ class TagController extends Controller
                 return $tag->name;
             });
             return response()->json($names);
-            /*return response()->json([
-                'aaa','aavv','aafgr', 'bbb', 'ccc', 'ddd', 'eee'
-            ]);*/
         }
     }
 

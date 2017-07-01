@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tlist extends Model
 {
+    // Make slug key binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     protected $fillable = array('title', 'slug', 'photo', 'desc', 'video_link',
     'status', 'progress', 'settings', 'tcategory_id');
 

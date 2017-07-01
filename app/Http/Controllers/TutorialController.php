@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Tutorial;
 use App\Tcategory;
+use App\Tlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class TutorialController extends Controller
 {
+    public $tlistStatus = [1=>['status'=>'진행중','css'=>'primary'],
+                          2=>['status'=>'완료', 'css'=> 'success'],
+                          3=>['status'=>'휴강', 'css'=>'danger'],
+                          4=>['status'=>'비공개', 'css'=>'warning']];
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,6 @@ class TutorialController extends Controller
      */
     public function index()
     {
-        // Show all the tutorials
 
     }
 
@@ -26,26 +32,24 @@ class TutorialController extends Controller
      */
     public function create()
     {
-        // fine level 1 categories
-        $tcategories1 = Tcategory::where('level', 1)->get();
+        // find categories
         $tree = Tcategory::get()->toTree();
-        $nodes = Tcategory::get()->toFlatTree();
-        //print_r($tree);
-        //dd($tree);
-        /*$traverse = function ($categories, $prefix = '-') use (&$traverse) {
-            foreach ($categories as $category) {
-                echo PHP_EOL.$prefix.' '.$category->name;
+        //$nodes = Tcategory::get()->toFlatTree();
 
-                $traverse($category->children, $prefix.'-');
-            }
-        };
+        // authorize user
+        $me = Auth::user();
 
-        $traverse($tree);*/
-        //dd($traverse);
+        // find Tlist which are mine
+        /*$myTlist2 = Tlist::with(['users' => function ($query) use ($userid) {
+            $query->where('tlist_user.user_id', $userid);
+        }])->get();*/
+        //$myTlists = $me->tlists()->with('users')->orderBy('created_at', 'desc')->paginate(config('app.tlists_per_page'))->setPath('/tlist/getTlists/page');
+        //->withPath('getTlists/page');
+        //dd($myTlists);
 
-
-        //dd($tcategories);
-        return view('admin.tutorial.create')->with(['tcategories' => $tree]);
+        return view('admin.tutorial.create')->with(['tcategories' => $tree,
+                    //'myTlists' => $myTlists,
+                'tlistStatus' => $this->tlistStatus]);
     }
 
     /**
@@ -56,7 +60,7 @@ class TutorialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

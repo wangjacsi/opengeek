@@ -26,15 +26,15 @@
             <li>
                 <a href="#"><i class="fa fa-address-card-o" aria-hidden="true"></i> <span class="nav-label">My Page</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('profile.index') }}">My Profile</a></li>                    
+                    <li><a href="{{ route('profile.index') }}">My Profile</a></li>
                     <li><a href="{{ route('profile.edit') }}">Logout</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span class="nav-label">Tutorial</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{ route('profile.index') }}">My Tutorial</a></li>
-                    <li><a href="{{ route('profile.index') }}">Upload Tutorial</a></li>
+                    <li><a href="{{ route('tlist.create') }}">Tutorial Lists</a></li>
+                    <li><a href="{{ route('tutorial.create') }}">Upload Tutorial</a></li>
                 </ul>
             </li>
             <li>

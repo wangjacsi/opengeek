@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -124,6 +124,11 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    // Custom Config Values
+    // Pagination
+    'num_items_per_page' => 20,
+    'tlists_per_page' => 5,
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -177,6 +182,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -191,7 +197,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -226,7 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
